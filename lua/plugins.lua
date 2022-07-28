@@ -17,14 +17,19 @@ return require('packer').startup(function()
         requires = { 'kyazdani42/nvim-web-devicons' }
     }
     use 'nvim-lua/plenary.nvim'
-    use 'gfanto/fzf-lsp.nvim'
+    if vim.fn.has('macunix') ~= 0 then
+        use 'gfanto/fzf-lsp.nvim'
+    else
+        use 'junegunn/fzf'
+        use 'junegunn/fzf.vim'
+    end
     use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'saadparwaiz1/cmp_luasnip'
     use 'L3MON4D3/LuaSnip'
     use({
-        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        "Maan2003/lsp_lines.nvim",
         config = function()
             require("lsp_lines").setup()
         end,

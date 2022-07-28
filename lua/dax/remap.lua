@@ -4,9 +4,15 @@ vim.keymap.set('n', '<leader><leader>', function()
     vim.cmd(vim.api.nvim_replace_termcodes('normal <c-^>', true, true, true))
 end, { noremap = true })
 
-vim.keymap.set('n', '<C-p>', function()
-    vim.cmd("FzfLua files")
-end)
+if vim.fn.has('macunix') ~= 0 then
+    vim.keymap.set('n', '<C-p>', function()
+        vim.cmd("FzfLua files")
+    end)
+else 
+    vim.keymap.set('n', '<C-p>', function()
+        vim.cmd("Files")
+    end)
+end
 
 vim.keymap.set('n', '<up>', function() end)
 vim.keymap.set('n', '<down>', function() end)
