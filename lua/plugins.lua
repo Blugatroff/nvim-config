@@ -1,11 +1,10 @@
-
 return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     use 'folke/tokyonight.nvim'
     use 'ellisonleao/gruvbox.nvim'
     use {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     }
     use {
         'kyazdani42/nvim-tree.lua',
@@ -14,7 +13,9 @@ return require('packer').startup(function()
         },
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
-    use 'junegunn/fzf.vim'
+    use { 'ibhagwan/fzf-lua',
+        requires = { 'kyazdani42/nvim-web-devicons' }
+    }
     use 'nvim-lua/plenary.nvim'
     use 'gfanto/fzf-lsp.nvim'
     use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
@@ -28,4 +29,12 @@ return require('packer').startup(function()
             require("lsp_lines").setup()
         end,
     })
+    use 'famiu/bufdelete.nvim'
+    use 'j-hui/fidget.nvim'
+    use 'rebelot/kanagawa.nvim'
+    use {
+        "luukvbaal/stabilize.nvim",
+        config = function() require("stabilize").setup() end
+    }
+    use 'petertriho/nvim-scrollbar'
 end)
