@@ -4,15 +4,9 @@ vim.keymap.set('n', '<leader><leader>', function()
     vim.cmd(vim.api.nvim_replace_termcodes('normal <c-^>', true, true, true))
 end, { noremap = true })
 
-if vim.fn.has('macunix') ~= 0 then
-    vim.keymap.set('n', '<C-p>', function()
-        vim.cmd("FzfLua files")
-    end)
-else 
-    vim.keymap.set('n', '<C-p>', function()
-        vim.cmd("Files")
-    end)
-end
+vim.keymap.set('n', '<C-p>', function()
+    vim.cmd("Files")
+end)
 
 vim.keymap.set('n', '<up>', function() end)
 vim.keymap.set('n', '<down>', function() end)
@@ -41,4 +35,12 @@ vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
+vim.keymap.set('n', 'gm', '%')
+vim.keymap.set('n', '0', '^')
+vim.keymap.set('n', '^', '0')
+
+vim.keymap.set('n', '<C-e>', function()
+    vim.cmd('NeoTreeFocusToggle')
+end)
 

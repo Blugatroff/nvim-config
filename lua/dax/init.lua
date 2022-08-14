@@ -4,6 +4,6 @@ require("dax.lsp")
 require("dax.color")
 require("dax.line")
 
-require("nvim-tree").setup()
 require('fidget').setup()
 require("scrollbar").setup()
+
