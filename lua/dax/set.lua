@@ -9,3 +9,7 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
+vim.cmd('syntax on')
+vim.cmd('filetype on')
+vim.cmd('filetype plugin indent on')
+

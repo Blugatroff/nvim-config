@@ -87,7 +87,7 @@ cmp.setup({
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local on_attach = function(client, bufnr)
+local on_attach = function(language) return function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     local bufopts = { noremap=true, silent=true, buffer=bufnr }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
@@ -103,8 +103,12 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, require('dax.util').merge(bufopts, { noremap = true }))
-end
+    local format = vim.lsp.buf.formatting
+    if language == 'lua' then
+        format = function() vim.cmd('Neoformat') end
+    end
+    vim.keymap.set('n', '<space>f', format, require('dax.util').merge(bufopts, { noremap = true }))
+end end
 
 local lsp = require('lspconfig')
 lsp.rust_analyzer.setup({
@@ -118,11 +122,23 @@ lsp.rust_analyzer.setup({
             }
         }
     },
-    on_attach = on_attach,
+    on_attach = on_attach(),
     capabilities = capabilities,
 })
 lsp.tsserver.setup({
-    on_attach = on_attach,
+    on_attach = on_attach(),
     capabilities = capabilities,
 })
+
+lsp.purescriptls.setup {
+  on_attach = on_attach('lua'),
+  settings = {
+    purescript = {
+      addSpagoSources = true -- e.g. any purescript language-server config here
+    }
+  },
+  flags = {
+    debounce_text_changes = 150,
+  }
+}
 

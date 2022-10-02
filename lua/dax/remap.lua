@@ -8,6 +8,8 @@ vim.keymap.set('n', '<C-p>', function()
     vim.cmd("Files")
 end)
 
+vim.cmd(':nnoremap <Leader>b :buffers<CR>:buffer<Space>')
+
 vim.keymap.set('n', '<up>', function() end)
 vim.keymap.set('n', '<down>', function() end)
 
@@ -34,7 +36,7 @@ local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.cmd('map <leader>a :bp<bar>sp<bar>bn<bar>bd<CR>')
 
 vim.keymap.set('n', 'gm', '%')
 vim.keymap.set('n', '0', '^')

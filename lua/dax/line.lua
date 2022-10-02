@@ -1,3 +1,4 @@
+if false then
 require('lualine').setup({ 
     options = { 
         theme = 'kanagawa' 
@@ -19,5 +20,6 @@ require('lualine').setup({
         lualine_z = {}
     },
 })
+end
 vim.opt.laststatus = 3
 vim.opt.cmdheight = 1

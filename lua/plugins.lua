@@ -6,10 +6,6 @@ return require('packer').startup(function()
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     }
-    --use { 'ibhagwan/fzf-lua',
-    --    requires = { 'kyazdani42/nvim-web-devicons' },
-    --}
-    --use 'gfanto/fzf-lsp.nvim'
     use 'nvim-lua/plenary.nvim'
     use 'junegunn/fzf'
     use 'junegunn/fzf.vim'
@@ -31,7 +27,6 @@ return require('packer').startup(function()
         "luukvbaal/stabilize.nvim",
         config = function() require("stabilize").setup() end
     }
-    use 'petertriho/nvim-scrollbar'
     use {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v2.x",
@@ -41,5 +36,7 @@ return require('packer').startup(function()
             "MunifTanjim/nui.nvim",
         }
     }
+    use 'purescript-contrib/purescript-vim'
+    use 'sbdchd/neoformat'
 end)
 
