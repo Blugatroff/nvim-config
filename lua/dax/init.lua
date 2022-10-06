@@ -6,4 +6,5 @@ require("dax.line")
 require("dax.context")
 
 require('fidget').setup()
+require('vgit').setup()
 

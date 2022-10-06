@@ -38,5 +38,11 @@ return require('packer').startup(function()
     }
     use 'purescript-contrib/purescript-vim'
     use 'sbdchd/neoformat'
+    use {
+        'tanvirtin/vgit.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        }
+    }
 end)
 
