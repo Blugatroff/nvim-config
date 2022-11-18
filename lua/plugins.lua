@@ -44,5 +44,6 @@ return require('packer').startup(function()
             'nvim-lua/plenary.nvim'
         }
     }
+    use 'chrisbra/unicode.vim'
 end)
 
