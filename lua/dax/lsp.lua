@@ -131,16 +131,22 @@ lsp.tsserver.setup({
 })
 
 lsp.purescriptls.setup {
-  on_attach = on_attach('lua'),
-  settings = {
-    purescript = {
-      addSpagoSources = true -- e.g. any purescript language-server config here
+    on_attach = on_attach('lua'),
+    settings = {
+        purescript = {
+            addSpagoSources = true, -- e.g. any purescript language-server config here
+            censorWarnings = {
+                "UnusedName",
+                "ShadowedName",
+            },
+            formatter = "tidy",
+        }
+    },
+    flags = {
+        debounce_text_changes = 150,
     }
-  },
-  flags = {
-    debounce_text_changes = 150,
-  }
 }
+
 lsp.hls.setup {
     on_attach = on_attach('haskell')
 }

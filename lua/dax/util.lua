@@ -1,7 +1,6 @@
 local M = {}
 M.merge = function(...)
     local res = {}
-    print(select)
     for i = 1, select('#', ...) do
         local table = select(1, ...)
         if type(table) == "table" then
