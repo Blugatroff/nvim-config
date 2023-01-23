@@ -45,5 +45,6 @@ return require('packer').startup(function()
         }
     }
     use 'chrisbra/unicode.vim'
+    use 'navarasu/onedark.nvim'
 end)
 

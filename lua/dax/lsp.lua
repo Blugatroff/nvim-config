@@ -108,6 +108,8 @@ local on_attach = function(language) return function(client, bufnr)
         format = function() vim.cmd('Neoformat') end
     end
     vim.keymap.set('n', '<space>f', format, require('dax.util').merge(bufopts, { noremap = true }))
+    vim.keymap.set('n', '<space>l', vim.lsp.codelens.refresh, bufopts)
+    vim.keymap.set('n', '<space>k', vim.lsp.codelens.run, bufopts)
 end end
 
 local lsp = require('lspconfig')
@@ -134,13 +136,13 @@ lsp.purescriptls.setup {
     on_attach = on_attach('lua'),
     settings = {
         purescript = {
-            addSpagoSources = true, -- e.g. any purescript language-server config here
+        addSpagoSources = true,
             censorWarnings = {
-                "UnusedName",
                 "ShadowedName",
-            },
-            formatter = "tidy",
-        }
+                "MissingTypeDeclaration"
+            }
+        },
+        formatter = "tidy"
     },
     flags = {
         debounce_text_changes = 150,
@@ -148,6 +150,13 @@ lsp.purescriptls.setup {
 }
 
 lsp.hls.setup {
-    on_attach = on_attach('haskell')
+    on_attach = on_attach('haskell'),
+    settings = {
+        plugin = {
+            stan = {
+                globalOn = false
+            }
+        }
+    }
 }
 
