@@ -103,13 +103,13 @@ local on_attach = function(language) return function(client, bufnr)
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    local format = vim.lsp.buf.formatting
-    if language == 'lua' then
+    local format = function() vim.lsp.buf.format({async = true }) end
+    if language == 'lua' or language == 'purescript' then
         format = function() vim.cmd('Neoformat') end
     end
-    vim.keymap.set('n', '<space>f', format, require('dax.util').merge(bufopts, { noremap = true }))
-    vim.keymap.set('n', '<space>l', vim.lsp.codelens.refresh, bufopts)
-    vim.keymap.set('n', '<space>k', vim.lsp.codelens.run, bufopts)
+    vim.keymap.set('n', '<leader>f', format, require('dax.util').merge(bufopts, { noremap = true }))
+    vim.keymap.set('n', '<leader>l', vim.lsp.codelens.refresh, bufopts)
+    vim.keymap.set('n', '<leader>k', vim.lsp.codelens.run, bufopts)
 end end
 
 local lsp = require('lspconfig')
@@ -133,18 +133,19 @@ lsp.tsserver.setup({
     capabilities = capabilities,
 })
 
+vim.cmd("let g:neoformat_enabled_purescript = ['purstidy']")
 lsp.purescriptls.setup {
-    cmd = { "nc", "localhost", "3000" },
-    on_attach = on_attach('lua'),
+    -- cmd = { "nc", "localhost", "3000" },
+    on_attach = on_attach('purescript'),
     settings = {
         purescript = {
-        addSpagoSources = true,
+            addSpagoSources = true,
             censorWarnings = {
                 "ShadowedName",
                 "MissingTypeDeclaration"
             }
         },
-        formatter = "tidy"
+        formatter = "purs-tidy"
     },
     flags = {
         debounce_text_changes = 150,
