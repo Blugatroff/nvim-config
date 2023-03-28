@@ -114,6 +114,7 @@ end end
 
 local lsp = require('lspconfig')
 lsp.rust_analyzer.setup({
+    cmd = { "rustup", "run", "stable", "rust-analyzer" },
     settings = {
         ["rust-analyzer"] = {
             procMacro = {
@@ -162,5 +163,17 @@ lsp.hls.setup {
 }
 lsp.pyright.setup {
     on_attach = on_attach('python')
+}
+
+lsp.eslint.setup {
+    on_attach = on_attach('eslint')
+}
+
+require('nvim-treesitter.configs').setup {
+    ensure_installed = { 'c', 'rust', 'lua', 'tsx', 'python', 'typescript', 'haskell' },
+    highlight = {
+        enable = true,
+        -- disable = { 'tsx' }
+    }
 }
 

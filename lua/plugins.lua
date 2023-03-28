@@ -53,5 +53,9 @@ return require('packer').startup(function()
     }
     use 'chrisbra/unicode.vim'
     use 'navarasu/onedark.nvim'
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
 end)
 
