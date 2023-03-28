@@ -133,6 +133,7 @@ lsp.tsserver.setup({
 })
 
 lsp.purescriptls.setup {
+    cmd = { "nc", "localhost", "3000" },
     on_attach = on_attach('lua'),
     settings = {
         purescript = {
@@ -158,5 +159,8 @@ lsp.hls.setup {
             }
         }
     }
+}
+lsp.pyright.setup {
+    on_attach = on_attach('python')
 }
 

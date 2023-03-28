@@ -7,8 +7,16 @@ return require('packer').startup(function()
         requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     }
     use 'nvim-lua/plenary.nvim'
-    use 'junegunn/fzf'
-    use 'junegunn/fzf.vim'
+    -- use 'junegunn/fzf'
+    -- use 'junegunn/fzf.vim'
+    use {
+        'nvim-telescope/telescope.nvim', 
+        tag = '0.1.1',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
+    use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+    use 'chentoast/marks.nvim'
+    use 'ojroques/nvim-bufdel'
     use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
@@ -20,7 +28,6 @@ return require('packer').startup(function()
             require("lsp_lines").setup()
         end,
     })
-    use 'famiu/bufdelete.nvim'
     use 'j-hui/fidget.nvim'
     use 'rebelot/kanagawa.nvim'
     use {
@@ -34,7 +41,7 @@ return require('packer').startup(function()
             "nvim-lua/plenary.nvim",
             "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
             "MunifTanjim/nui.nvim",
-        }
+        },
     }
     use 'purescript-contrib/purescript-vim'
     use 'sbdchd/neoformat'
