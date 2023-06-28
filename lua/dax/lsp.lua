@@ -114,7 +114,7 @@ end end
 
 local lsp = require('lspconfig')
 lsp.rust_analyzer.setup({
-    cmd = { "rustup", "run", "stable", "rust-analyzer" },
+    cmd = { "rust-analyzer" },
     settings = {
         ["rust-analyzer"] = {
             procMacro = {

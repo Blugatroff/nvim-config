@@ -28,7 +28,7 @@ return require('packer').startup(function()
             require("lsp_lines").setup()
         end,
     })
-    use 'j-hui/fidget.nvim'
+    use { 'j-hui/fidget.nvim', tag = 'legacy' }
     use 'rebelot/kanagawa.nvim'
     use {
         "luukvbaal/stabilize.nvim",
