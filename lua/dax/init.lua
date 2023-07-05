@@ -3,11 +3,8 @@ require("dax.remap")
 require("dax.lsp")
 require("dax.color")
 require("dax.line")
-require("dax.context")
-require("dax.tree")
 
 require('fidget').setup()
-require('vgit').setup()
 
 require('bufferline').setup({})
 
