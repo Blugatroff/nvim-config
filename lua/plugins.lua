@@ -44,5 +44,9 @@ return require('packer').startup(function()
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
+    use 'VidocqH/lsp-lens.nvim'
+    use 'rhysd/vim-wasm'
+
+    use 'lervag/vimtex'
 end)
 

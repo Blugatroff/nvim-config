@@ -110,6 +110,26 @@ local on_attach = function(language) return function(client, bufnr)
     vim.keymap.set('n', '<leader>f', format, require('dax.util').merge(bufopts, { noremap = true }))
     vim.keymap.set('n', '<leader>l', vim.lsp.codelens.refresh, bufopts)
     vim.keymap.set('n', '<leader>k', vim.lsp.codelens.run, bufopts)
+
+    vim.g.diagnostics_active = true
+    local toggle_diagnostics = function()
+        if vim.g.diagnostics_active then
+            vim.g.diagnostics_active = false
+            vim.diagnostic.reset()
+            vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+        else
+            vim.g.diagnostics_active = true
+            vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+                vim.lsp.diagnostic.on_publish_diagnostics, 
+                { virtual_text = true
+                , signs = true
+                , underline = true
+                , update_in_insert = false
+                }
+            )
+        end
+    end
+    vim.keymap.set('n', '<leader>c', toggle_diagnostics,  {noremap = true, silent = true})
 end end
 
 local lsp = require('lspconfig')
@@ -168,6 +188,10 @@ lsp.pyright.setup {
 
 lsp.eslint.setup {
     on_attach = on_attach('eslint')
+}
+
+lsp.ocamllsp.setup {
+    on_attach = on_attach('ocaml')
 }
 
 require('nvim-treesitter.configs').setup {

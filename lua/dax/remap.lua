@@ -11,7 +11,7 @@ end, { noremap = true })
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, {})
 vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
-vim.keymap.set('n', '<C-f>', builtin.buffers, {})
+vim.keymap.set('n', '<leader>f', builtin.buffers, {})
 local actions = require('telescope.actions')
 require('telescope').setup {
     defaults = {
@@ -38,6 +38,8 @@ vim.keymap.set('n', '<C-t>', function() vim.cmd(':tabnew') end)
 vim.keymap.set('n', '<C-k>', function() vim.cmd(':tabprevious') end)
 vim.keymap.set('n', '<C-j>', function() vim.cmd(':tabnext') end)
 
+vim.cmd('set splitright')
+vim.cmd('set splitbelow')
 vim.keymap.set('n', '<C-n>', function() vim.cmd(':vnew') end)
 vim.keymap.set('n', '<C-m>', function() vim.cmd(':new') end)
 
@@ -59,8 +61,4 @@ vim.cmd('map <leader>a :bp<bar>sp<bar>bn<bar>bd<CR>')
 vim.keymap.set('n', 'gm', '%')
 vim.keymap.set('n', '0', '^')
 vim.keymap.set('n', '^', '0')
-
-vim.keymap.set('n', '<C-e>', function()
-    vim.cmd('Neotree toggle')
-end)
 
