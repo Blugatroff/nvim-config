@@ -202,3 +202,6 @@ require('nvim-treesitter.configs').setup {
     }
 }
 
+lsp.wgsl_analyzer.setup{}
+vim.cmd("au BufNewFile,BufRead *.wgsl set filetype=wgsl")
+

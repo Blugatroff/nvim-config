@@ -48,5 +48,7 @@ return require('packer').startup(function()
     use 'rhysd/vim-wasm'
 
     use 'lervag/vimtex'
+
+    use 'DingDean/wgsl.vim'
 end)
 
