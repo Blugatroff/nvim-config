@@ -13,7 +13,6 @@ return require('packer').startup(function()
         requires = { {'nvim-lua/plenary.nvim'} }
     }
     use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
-    use 'chentoast/marks.nvim'
     use 'ojroques/nvim-bufdel'
     use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
     use 'hrsh7th/nvim-cmp'
@@ -50,5 +49,8 @@ return require('packer').startup(function()
     use 'lervag/vimtex'
 
     use 'DingDean/wgsl.vim'
+    use 'mfussenegger/nvim-dap'
+    use 'rcarriga/nvim-dap-ui'
+    use 'folke/neodev.nvim'
 end)
 

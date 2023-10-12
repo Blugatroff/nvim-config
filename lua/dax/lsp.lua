@@ -1,9 +1,9 @@
 local lsp_lines_enabled = false
 local function toggle_lsp_lines()
     lsp_lines_enabled = not lsp_lines_enabled
-    vim.diagnostic.config({ 
-        virtual_lines = lsp_lines_enabled, 
-        virtual_text = not lsp_lines_enabled 
+    vim.diagnostic.config({
+        virtual_lines = lsp_lines_enabled,
+        virtual_text = not lsp_lines_enabled
     })
 end
 toggle_lsp_lines()
@@ -87,7 +87,7 @@ cmp.setup({
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local on_attach = function(language) return function(client, bufnr)
+local on_attach = function(language) return function(_, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     local bufopts = { noremap=true, silent=true, buffer=bufnr }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
@@ -120,7 +120,7 @@ local on_attach = function(language) return function(client, bufnr)
         else
             vim.g.diagnostics_active = true
             vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-                vim.lsp.diagnostic.on_publish_diagnostics, 
+                vim.lsp.diagnostic.on_publish_diagnostics,
                 { virtual_text = true
                 , signs = true
                 , underline = true
@@ -132,7 +132,20 @@ local on_attach = function(language) return function(client, bufnr)
     vim.keymap.set('n', '<leader>c', toggle_diagnostics,  {noremap = true, silent = true})
 end end
 
+require("neodev").setup({
+    library = { plugins = { "nvim-dap-ui" }, types = true },
+})
+
 local lsp = require('lspconfig')
+lsp.lua_ls.setup({
+  settings = {
+    Lua = {
+      completion = {
+        callSnippet = "Replace"
+      }
+    }
+  }
+})
 lsp.rust_analyzer.setup({
     cmd = { "rust-analyzer" },
     settings = {
@@ -205,3 +218,77 @@ require('nvim-treesitter.configs').setup {
 lsp.wgsl_analyzer.setup{}
 vim.cmd("au BufNewFile,BufRead *.wgsl set filetype=wgsl")
 
+lsp.clangd.setup{}
+
+local dap = require('dap')
+vim.keymap.set('n', 'gb', dap.toggle_breakpoint)
+vim.keymap.set('n', 'gn', dap.step_over)
+vim.keymap.set('n', 'gi', dap.step_into)
+vim.keymap.set('n', 'gI', dap.repl.open)
+vim.keymap.set('n', 'gO', dap.step_out)
+
+vim.keymap.set('n', '<F5>', function() dap.continue() end)
+-- vim.keymap.set('n', '<F10>', function() dap.step_over() end)
+-- vim.keymap.set('n', '<F11>', function() dap.step_into() end)
+-- vim.keymap.set('n', '<F12>', function() dap.step_out() end)
+-- vim.keymap.set('n', '<Leader>b', function() dap.toggle_breakpoint() end)
+vim.keymap.set('n', '<Leader>B', function() dap.set_breakpoint() end)
+vim.keymap.set('n', '<Leader>lp', function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+vim.keymap.set('n', '<Leader>dr', function() dap.repl.open() end)
+vim.keymap.set('n', '<Leader>dl', function() dap.run_last() end)
+vim.keymap.set({'n', 'v'}, '<Leader>dh', function()
+  require('dap.ui.widgets').hover()
+end)
+vim.keymap.set({'n', 'v'}, '<Leader>dp', function()
+  require('dap.ui.widgets').preview()
+end)
+vim.keymap.set('n', '<Leader>df', function()
+  local widgets = require('dap.ui.widgets')
+  widgets.centered_float(widgets.frames)
+end)
+vim.keymap.set('n', '<Leader>ds', function()
+  local widgets = require('dap.ui.widgets')
+  widgets.centered_float(widgets.scopes)
+end)
+
+
+if vim.fn.executable('lldb-vscode') == 1 then
+  dap.adapters.lldb = {
+    type = 'executable',
+    command = (function()
+      local handle = io.popen('which lldb-vscode')
+      if handle == nil then return "lldb-vscode" end
+      local result = handle:read("*a")
+      handle:close()
+      return result:gsub("%s+", "")
+    end)(),
+    name = 'lldb'
+  }
+  dap.configurations.c = {
+    {
+      name = 'Launch',
+      type = 'lldb',
+      request = 'launch',
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = false,
+      args = {},
+    },
+  }
+  dap.configurations.cpp = dap.configurations.c
+  dap.configurations.rust = dap.configurations.c
+end
+
+local dapui = require("dapui")
+dapui.setup()
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
