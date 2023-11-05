@@ -170,6 +170,7 @@ vim.cmd("let g:neoformat_enabled_purescript = ['purstidy']")
 lsp.purescriptls.setup {
     -- cmd = { "nc", "localhost", "3000" },
     on_attach = on_attach('purescript'),
+    root_dir = lsp.util.root_pattern("spago.yaml"),
     settings = {
         purescript = {
             addSpagoSources = true,
@@ -206,6 +207,7 @@ lsp.eslint.setup {
 lsp.ocamllsp.setup {
     on_attach = on_attach('ocaml')
 }
+lsp.nil_ls.setup {}
 
 require('nvim-treesitter.configs').setup {
     ensure_installed = { 'c', 'rust', 'lua', 'tsx', 'python', 'typescript', 'haskell' },
