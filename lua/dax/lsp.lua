@@ -1,4 +1,4 @@
-local lsp_lines_enabled = false
+local lsp_lines_enabled = falselsp
 local function toggle_lsp_lines()
     lsp_lines_enabled = not lsp_lines_enabled
     vim.diagnostic.config({
@@ -137,15 +137,6 @@ require("neodev").setup({
 })
 
 local lsp = require('lspconfig')
-lsp.lua_ls.setup({
-  settings = {
-    Lua = {
-      completion = {
-        callSnippet = "Replace"
-      }
-    }
-  }
-})
 lsp.rust_analyzer.setup({
     cmd = { "rust-analyzer" },
     settings = {
@@ -207,7 +198,6 @@ lsp.eslint.setup {
 lsp.ocamllsp.setup {
     on_attach = on_attach('ocaml')
 }
-lsp.nil_ls.setup {}
 
 require('nvim-treesitter.configs').setup {
     ensure_installed = { 'c', 'rust', 'lua', 'tsx', 'python', 'typescript', 'haskell' },
@@ -217,10 +207,14 @@ require('nvim-treesitter.configs').setup {
     }
 }
 
-lsp.wgsl_analyzer.setup{}
+lsp.wgsl_analyzer.setup {
+    on_attach = on_attach('wgsl')
+}
 vim.cmd("au BufNewFile,BufRead *.wgsl set filetype=wgsl")
 
-lsp.clangd.setup{}
+lsp.clangd.setup {
+    on_attach = on_attach('c')
+}
 
 local dap = require('dap')
 vim.keymap.set('n', 'gb', dap.toggle_breakpoint)
