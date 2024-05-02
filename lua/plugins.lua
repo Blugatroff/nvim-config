@@ -50,8 +50,6 @@ return require('packer').startup(function()
     use 'lervag/vimtex'
 
     use 'DingDean/wgsl.vim'
-    use 'mfussenegger/nvim-dap'
-    use 'rcarriga/nvim-dap-ui'
     use 'folke/neodev.nvim'
 end)
 
