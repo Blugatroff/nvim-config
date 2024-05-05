@@ -216,3 +216,23 @@ lsp.clangd.setup {
     on_attach = on_attach('c')
 }
 
+vim.tbl_deep_extend('keep', lsp, {
+    roc_language_server = {
+        filetypes = 'roc',
+        cmd = { "roc_language_server" },
+    }
+})
+
+require('lspconfig.configs').roc_language_server = {
+  default_config = {
+    cmd = { "roc_language_server" },
+    filetypes = { 'roc' },
+    root_dir = lsp.util.root_pattern("flake.nix"),
+    settings = {},
+  };
+}
+vim.cmd("au BufNewFile,BufRead *.roc set filetype=roc")
+lsp.roc_language_server.setup {
+    on_attach = on_attach('roc')
+}
+

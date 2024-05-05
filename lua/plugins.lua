@@ -49,7 +49,13 @@ return require('packer').startup(function()
 
     use 'lervag/vimtex'
 
+    use 'ChrisWellsWood/roc.vim'
     use 'DingDean/wgsl.vim'
     use 'folke/neodev.nvim'
+
+    use {
+        'numToStr/Comment.nvim',
+        config = function() require('Comment').setup() end
+    }
 end)
 
