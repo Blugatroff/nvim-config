@@ -1,4 +1,5 @@
 vim.g.mapleader = ' '
+vim.g.maplocalleader = vim.g.mapleader
 
 vim.keymap.set('n', '<leader><leader>', function()
     vim.cmd(vim.api.nvim_replace_termcodes('normal <c-^>', true, true, true))

@@ -12,7 +12,7 @@ return require('packer').startup(function()
         tag = '0.1.4',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
-    use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+    use {'akinsho/bufferline.nvim', tag = "v4.*", requires = 'nvim-tree/nvim-web-devicons'}
     use 'ojroques/nvim-bufdel'
     use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
     use 'hrsh7th/nvim-cmp'
@@ -57,5 +57,6 @@ return require('packer').startup(function()
         'numToStr/Comment.nvim',
         config = function() require('Comment').setup() end
     }
+    use 'Olical/conjure'
 end)
 

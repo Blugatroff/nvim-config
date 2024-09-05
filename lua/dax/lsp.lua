@@ -152,8 +152,9 @@ lsp.rust_analyzer.setup({
     on_attach = on_attach(),
     capabilities = capabilities,
 })
-lsp.tsserver.setup({
-    on_attach = on_attach(),
+
+lsp.ts_ls.setup({
+    on_attach = on_attach('typescript'),
     capabilities = capabilities,
 })
 
