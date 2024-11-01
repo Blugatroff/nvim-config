@@ -30,3 +30,5 @@ nnoremap <expr><C-=> ChangeScaleFactor(1.25)
 nnoremap <expr><C--> ChangeScaleFactor(1/1.25)
 ]])
 
+require('Comment.ft').set('watim', '//%s')
+

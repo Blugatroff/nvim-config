@@ -39,7 +39,6 @@ return require('packer').startup(function()
     use 'tpope/vim-rhubarb'
 
     use 'chrisbra/unicode.vim'
-    use 'navarasu/onedark.nvim'
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
@@ -51,12 +50,15 @@ return require('packer').startup(function()
 
     use 'ChrisWellsWood/roc.vim'
     use 'DingDean/wgsl.vim'
-    use 'folke/neodev.nvim'
 
     use {
         'numToStr/Comment.nvim',
         config = function() require('Comment').setup() end
     }
-    use 'Olical/conjure'
+    -- use 'Olical/conjure'
+    use 'perillo/qbe.vim'
+    use { "catppuccin/nvim", as = "catppuccin" }
+
+    use 'mfussenegger/nvim-jdtls'
 end)
 
