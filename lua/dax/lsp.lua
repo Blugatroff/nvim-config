@@ -191,5 +191,4 @@ lsp.roc_language_server.setup {
 }
 
 lsp.pyright.setup {}
--- lsp.jdtls.setup {}
 

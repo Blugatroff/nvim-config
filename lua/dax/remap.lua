@@ -47,7 +47,7 @@ vim.keymap.set('n', '<C-m>', function() vim.cmd(':new') end)
 vim.keymap.set('n', '<C-h>', function() vim.cmd(':bp') end)
 vim.keymap.set('n', '<C-l>', function() vim.cmd(':bn') end)
 
-vim.keymap.set('n', '<leader>w', function() vim.cmd(':BufDel') end)
+vim.keymap.set('n', '<leader>w', function() require('bufdelete').bufdelete() end)
 vim.keymap.set('n', '<leader>q', function() vim.cmd(':tabclose') end)
 
 vim.opt.timeoutlen = 200

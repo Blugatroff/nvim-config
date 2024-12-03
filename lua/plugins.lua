@@ -13,7 +13,7 @@ return require('packer').startup(function()
         requires = { {'nvim-lua/plenary.nvim'} }
     }
     use {'akinsho/bufferline.nvim', tag = "v4.*", requires = 'nvim-tree/nvim-web-devicons'}
-    use 'ojroques/nvim-bufdel'
+    use 'famiu/bufdelete.nvim'
     use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-nvim-lsp'
