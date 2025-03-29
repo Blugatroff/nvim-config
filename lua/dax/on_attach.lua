@@ -13,7 +13,8 @@ return function(language) return function(_, bufnr)
     end, bufopts)
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    local telescope_builtins = require('telescope.builtin')
+    vim.keymap.set('n', 'gr', function() telescope_builtins.lsp_references() end, bufopts)
     local format = function() vim.lsp.buf.format({async = true }) end
     if language == 'lua' or language == 'purescript' then
         format = function() vim.cmd('Neoformat') end
