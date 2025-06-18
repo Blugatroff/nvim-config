@@ -133,6 +133,7 @@ lsp.purescriptls.setup {
 
 lsp.hls.setup {
     on_attach = on_attach('haskell'),
+    filetypes = { 'haskell', 'cabal' },
     settings = {
         plugin = {
             stan = {
@@ -154,7 +155,7 @@ lsp.ocamllsp.setup {
 }
 
 require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'c', 'rust', 'lua', 'tsx', 'python', 'typescript', 'haskell' },
+    ensure_installed = { 'c', 'rust', 'lua', 'tsx', 'python', 'typescript', 'haskell', 'scheme' },
     highlight = {
         enable = true,
         -- disable = { 'tsx' }
