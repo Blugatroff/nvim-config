@@ -74,6 +74,8 @@ return require('packer').startup(function()
 
     use 'mfussenegger/nvim-jdtls'
 
+    use 'kelly-lin/ranger.nvim'
+
     if packer_bootstrap then
         require('packer').sync()
     end

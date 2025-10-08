@@ -51,7 +51,6 @@ vim.keymap.set('n', '<leader>w', function() require('bufdelete').bufdelete() end
 vim.keymap.set('n', '<leader>q', function() vim.cmd(':tabclose') end)
 
 vim.opt.timeoutlen = 200
-vim.cmd("tnoremap jjj <C-\\><C-N>")
 
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
@@ -62,4 +61,12 @@ vim.cmd('map <leader>a :bp<bar>sp<bar>bn<bar>bd<CR>')
 vim.keymap.set('n', 'gm', '%')
 vim.keymap.set('n', '0', '^')
 vim.keymap.set('n', '^', '0')
+
+
+local ranger_nvim = require('ranger-nvim')
+ranger_nvim.setup({ replace_netrw = true })
+vim.api.nvim_set_keymap("n", "<leader>e", "", {
+    noremap = true,
+    callback = function() ranger_nvim.open(true) end,
+})
 
