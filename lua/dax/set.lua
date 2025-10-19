@@ -1,7 +1,7 @@
 vim.opt.relativenumber = true
 
 vim.cmd("set list")
-vim.cmd("set listchars=tab:!·,trail:·")
+vim.cmd("set listchars=tab:\\|·,trail:·")
 vim.opt.nu = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
