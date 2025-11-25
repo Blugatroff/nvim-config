@@ -64,8 +64,8 @@ vim.keymap.set('n', '^', '0')
 
 
 local ranger_nvim = require('ranger-nvim')
-ranger_nvim.setup({ replace_netrw = true })
-vim.api.nvim_set_keymap("n", "<leader>e", "", {
+ranger_nvim.setup({ replace_netrw = truk })
+vim.api.nvim_set_keymap("n", "<leader>r", "", {
     noremap = true,
     callback = function() ranger_nvim.open(true) end,
 })

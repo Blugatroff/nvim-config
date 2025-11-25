@@ -58,6 +58,11 @@ return require('packer').startup(function()
     }
     use 'VidocqH/lsp-lens.nvim'
     use 'rhysd/vim-wasm'
+    use({
+        "https://gitlab.com/HiPhish/guile.vim.git",
+    })
+    use 'Olical/conjure'
+    use 'PaterJason/cmp-conjure'
 
     use 'lervag/vimtex'
 
@@ -68,7 +73,6 @@ return require('packer').startup(function()
         'numToStr/Comment.nvim',
         config = function() require('Comment').setup() end
     }
-    -- use 'Olical/conjure'
     use 'perillo/qbe.vim'
     use { "catppuccin/nvim", as = "catppuccin" }
 
