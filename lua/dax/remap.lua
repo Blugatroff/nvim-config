@@ -62,11 +62,11 @@ vim.keymap.set('n', 'gm', '%')
 vim.keymap.set('n', '0', '^')
 vim.keymap.set('n', '^', '0')
 
+vim.g["conjure#mapping#doc_word"] = "gk"
 
 local ranger_nvim = require('ranger-nvim')
 ranger_nvim.setup({ replace_netrw = truk })
-vim.api.nvim_set_keymap("n", "<leader>r", "", {
-    noremap = true,
-    callback = function() ranger_nvim.open(true) end,
-})
+vim.api.nvim_create_user_command('Ranger',
+  function(opts) ranger_nvim.open(true) end,
+  { nargs = 0 })
 
