@@ -156,12 +156,19 @@ for name, config in pairs(lsps) do
     if config.more_setup then config.more_setup() end
 end
 
-require('nvim-treesitter.configs').setup {
-    ensure_installed = { 'c', 'rust', 'lua', 'tsx', 'python', 'typescript', 'haskell', 'scheme' },
-    highlight = {
-        enable = true,
-    }
-}
+local treesitter = require('nvim-treesitter')
+treesitter.setup()
+local languages = { 'c', 'rust', 'lua', 'tsx', 'python', 'typescript', 'haskell', 'scheme', 'html', 'yaml' }
+treesitter.install(languages)
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = languages,
+    callback = function()
+        vim.treesitter.start()
+        vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        vim.wo.foldmethod = 'expr'
+        -- vim.bo.indentation = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
+})
 
 -- vim.lsp.config('purescript_analyzer', {
 --     cmd = { '/home/jasper/clones/purescript-analyzer/target/debug/purescript-analyzer' },

@@ -22,7 +22,7 @@ return require('packer').startup(function()
     use 'nvim-lua/plenary.nvim'
     use {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.4',
+        -- tag = '0.1.4',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
     use {'akinsho/bufferline.nvim', tag = "v4.*", requires = 'nvim-tree/nvim-web-devicons'}
@@ -54,7 +54,8 @@ return require('packer').startup(function()
     use 'chrisbra/unicode.vim'
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
+        build = ':TSUpdate',
+        lazy = false
     }
     use 'VidocqH/lsp-lens.nvim'
     use 'rhysd/vim-wasm'
