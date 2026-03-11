@@ -1,6 +1,3 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = vim.g.mapleader
-
 vim.keymap.set('n', '<leader><leader>', function()
     vim.cmd(vim.api.nvim_replace_termcodes('normal <c-^>', true, true, true))
 end, { noremap = true })
@@ -12,7 +9,7 @@ end, { noremap = true })
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, {})
 vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>f', builtin.buffers, {})
+vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 local actions = require('telescope.actions')
 require('telescope').setup {
     defaults = {
@@ -24,8 +21,6 @@ require('telescope').setup {
         }
     }
 }
-
-vim.cmd(':nnoremap <Leader>b :buffers<CR>:buffer<Space>')
 
 vim.keymap.set('n', '<up>', function() end)
 vim.keymap.set('n', '<down>', function() end)
@@ -47,7 +42,7 @@ vim.keymap.set('n', '<C-m>', function() vim.cmd(':new') end)
 vim.keymap.set('n', '<C-h>', function() vim.cmd(':bp') end)
 vim.keymap.set('n', '<C-l>', function() vim.cmd(':bn') end)
 
-vim.keymap.set('n', '<leader>w', function() require('bufdelete').bufdelete() end)
+vim.keymap.set('n', '<leader>w', function() vim.cmd(':bd') end)
 vim.keymap.set('n', '<leader>q', function() vim.cmd(':tabclose') end)
 
 vim.opt.timeoutlen = 200
