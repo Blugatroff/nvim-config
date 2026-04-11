@@ -57,6 +57,8 @@ vim.keymap.set('n', 'gm', '%')
 vim.keymap.set('n', '0', '^')
 vim.keymap.set('n', '^', '0')
 
+vim.keymap.set('n', '<F4>', ':make<UP><ENTER>')
+
 vim.g["conjure#mapping#doc_word"] = "gk"
 
 local ranger_nvim = require('ranger-nvim')
