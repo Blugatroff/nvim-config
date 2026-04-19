@@ -36,14 +36,16 @@ vim.keymap.set('n', '<C-j>', function() vim.cmd(':tabnext') end)
 
 vim.cmd('set splitright')
 vim.cmd('set splitbelow')
-vim.keymap.set('n', '<C-n>', function() vim.cmd(':vnew') end)
-vim.keymap.set('n', '<C-m>', function() vim.cmd(':new') end)
+vim.keymap.set('n', '<C-n>', function() vim.cmd(':vsplit') end)
+vim.keymap.set('n', '<C-m>', function() vim.cmd(':split') end)
 
 vim.keymap.set('n', '<C-h>', function() vim.cmd(':bp') end)
 vim.keymap.set('n', '<C-l>', function() vim.cmd(':bn') end)
 
-vim.keymap.set('n', '<leader>w', function() vim.cmd(':bd') end)
+vim.keymap.set('n', '<leader>w', function() vim.cmd(':bn | bd#') end)
 vim.keymap.set('n', '<leader>q', function() vim.cmd(':tabclose') end)
+
+vim.keymap.set('n', '<F4>', ':update<C-M>:make<Up><C-M>')
 
 vim.opt.timeoutlen = 200
 
