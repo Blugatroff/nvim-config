@@ -44,6 +44,7 @@ vim.keymap.set('n', '<C-l>', function() vim.cmd(':bn') end)
 
 vim.keymap.set('n', '<leader>w', function() vim.cmd(':bn | bd#') end)
 vim.keymap.set('n', '<leader>q', function() vim.cmd(':tabclose') end)
+vim.keymap.set('n', '<leader>z', function() require("buffer_manager.ui").toggle_quick_menu() end)
 
 vim.keymap.set('n', '<F4>', ':update<C-M>:make<Up><C-M>')
 
